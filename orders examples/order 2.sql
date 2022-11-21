@@ -27,11 +27,8 @@ WHERE NOT EXISTS (
 INSERT INTO `order` (date, delivery, fk_client_id)
 SELECT NOW(), @delivery, client_id
 FROM client 
-WHERE (
-	SELECT client_id
-    FROM client
-    WHERE firstname = @firstname AND lastname = @lastname AND phone = @phone
-) LIMIT 1; 
+WHERE firstname = @firstname AND lastname = @lastname AND phone = @phone
+LIMIT 1; 
 
     
 SET @latest_order_id = (
